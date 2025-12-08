@@ -1,22 +1,22 @@
-import { Route, Routes,Link } from "react-router"
-import Home from "./Home"
-import About from "./about"
+import { Route, Routes } from "react-router";
+import Home from "./Home";
+import About from "./about";
+import NavBar from "./NavBar";
+import Login from "./Login";
+
+
 function App() {
-
-
   return (
     <>
-    <Link to="/">Home</Link>
-    <br />
-    <Link to="about">About</Link>
-    <h3>Router Topic </h3>
-      <h2>React Router 7 Tutorial </h2>
+      <NavBar />
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="about" element={<About/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login/>}/>
+        
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

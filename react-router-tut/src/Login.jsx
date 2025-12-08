@@ -1,13 +1,13 @@
 
-function Home() {
+function Login() {
 
 
     return (
         <>
         <h3>Router Topic </h3>
-            <h2>Home Page</h2>
+            <h2>Login Page</h2>
         </>
     )
 }
 
-export default Home;
+export default Login;
