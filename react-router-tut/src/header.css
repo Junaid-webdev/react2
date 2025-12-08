@@ -12,7 +12,7 @@
 .header ul {
     display: flex;
     justify-content: space-around;
-    width: 250px;
+    width: 350px;
     margin: auto;
     list-style: none;
     
@@ -24,7 +24,12 @@
 .header .link h2{
     margin: 0;
 }
-.header .link{
+.header .link {
     text-decoration: none;
     font-size: 22px;
 }
+ .college .link{
+    text-decoration: none;
+    font-size: 22px;
+    margin: 10px;
+ }
