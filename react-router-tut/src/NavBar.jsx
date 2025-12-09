@@ -1,9 +1,9 @@
-import { Link } from "react-router";
+import { Link, Outlet } from "react-router";
 import './header.css';
 export default function NavBar(){
     return<>
-    
-    <div className="header">
+    <div>
+       <div className="header">
     <Link className="link"><h3>Logo</h3></Link>
   
     <div>
@@ -23,6 +23,8 @@ export default function NavBar(){
     </ul>
     </div>
     </div>
-
+    <Outlet/>
+    </div>
+    
     </>
 }
