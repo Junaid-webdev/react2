@@ -8,6 +8,8 @@ import Collge from "./College";
 import Student from "./Student";
 import Departments from "./Department";
 import Details from "./Details";
+import UserList from "./UserList";
+import UserDetails from "./UserDetails";
 
 
 function App() {
@@ -20,7 +22,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
-
+          <Route path="/users" element={<UserList/>}/>
+          <Route path="/users/:id" element={<UserDetails />} />
         </Route>
         <Route path='/*' element={<PageNotFound/>}/>
         <Route path="/college" element={<Collge />}>
