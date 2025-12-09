@@ -22,8 +22,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/users" element={<UserList/>}/>
-          <Route path="/users/:id" element={<UserDetails />} />
+          <Route path="/users/list?" element={<UserList/>}/>
+          <Route path="/users/:id/:name?" element={<UserDetails />} />
         </Route>
         <Route path='/*' element={<PageNotFound/>}/>
         <Route path="/college" element={<Collge />}>
