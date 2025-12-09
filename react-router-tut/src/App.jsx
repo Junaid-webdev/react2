@@ -1,38 +1,26 @@
-import { useEffect, useState } from "react";
+import {Routes,Route, NavLink } from 'react-router'
+import UserAdd from './AddUser'
+import UserApp from './Userlist1'
+
 
 export default function App() {
 
-  const [userData,setUserData]=useState([]);
-  const [loding,setLoding]=useState(false)
-  useEffect(()=>{
-    setLoding(true)
-getUserData();
-  },[])
-
-  const getUserData = async ()=>{
-    const url = "http://localhost:3000/users";
-    let response = await fetch(url);
-    response = await response.json();
-    console.log(response);
-    setUserData(response)
-    setLoding(false)
-    
-  }
 
   return <>
 <div>
-  <h1>Integrate JSON Server API</h1>
-  {
-    !loding?
-    userData.map((user,index)=>(
-   <ul key={index} style={{ display:"flex",justifyContent:"space-around", border:"1px solid #aaa",margin:"0px",padding:"10px", listStyle:"none",}}>
-    <li>{user.name}</li>
-    <li>{user.age}</li>
-    <li>{user.email}</li>
-   </ul>
-    ))
-    :<h1>Loding Data.......</h1>
-  }
+  <ul style={{ display:'flex',width:'400px',justifyContent:'space-around',listStyle:'none' }}>
+    <li>
+      <NavLink to="/">Home</NavLink>
+    </li>
+    <li>
+       <NavLink to="/add">Add User</NavLink>
+    </li>
+  </ul>
+    {/* <h1>Make Routes and Pages for add user and list UI</h1> */}
+    <Routes >
+      <Route path="/" element={<UserApp />} />
+      <Route path="add" element={<UserAdd />} />
+    </Routes>
 </div>
   </>
 }
