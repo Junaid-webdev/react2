@@ -1,41 +1,38 @@
-import { Route, Routes } from "react-router";
-import Home from "./Home";
-import About from "./about";
-import NavBar from "./NavBar";
-import Login from "./Login";
-import PageNotFound from "./pageNotFound";
-import Collge from "./College";
-import Student from "./Student";
-import Departments from "./Department";
-import Details from "./Details";
-import UserList from "./UserList";
-import UserDetails from "./UserDetails";
+import { useEffect, useState } from "react";
 
+export default function App() {
 
-function App() {
-  return (
-    <>
-      {/* <NavBar /> */}
-      <Routes>
+  const [userData,setData]=useState([]);
+  useEffect(() => {
+    getUserData();
+  }, [])
 
-        <Route element={<NavBar />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/users/list?" element={<UserList/>}/>
-          <Route path="/users/:id/:name?" element={<UserDetails />} />
-        </Route>
-        <Route path='/*' element={<PageNotFound/>}/>
-        <Route path="/college" element={<Collge />}>
-          <Route index element={<Student />} />
-          <Route path="departments" element={<Departments />} />
-          <Route path="details" element={<Details />} />
-        </Route>
+  async function getUserData() {
+    const url = "https://jsonplaceholder.typicode.com/users";
+    let response = await fetch(url)
+    response = await response.json()
+  setData(response)
+  }
+  console.log(userData);
+  
 
-
-      </Routes>
-    </>
-  );
+  return <>
+<h1>Fetch data form api </h1>
+<ul style={{ display:"flex",justifyContent:"space-around", border:"1px solid #aaa",margin:"0px",padding:"10px", fontSize:"20px",listStyle:"none",background:"#ccc"}}>
+      <li style={{ textAlign:"center" }}>FirstName</li>
+      <li style={{ textAlign:"center" }}>Last Name</li>
+      <li style={{ textAlign:"center" }}>Email</li>
+      <li style={{ textAlign:"center" }}>Address</li>
+     </ul>
+{
+    userData && userData.map((user,index)=>(
+     <ul key={index} style={{ display:"flex",justifyContent:"space-around", border:"1px solid #aaa",margin:"0px",padding:"10px", listStyle:"none",  }}>
+      <li style={{ textAlign:"center" }}>{user.name}</li>
+      <li style={{ textAlign:"center" }}>{user.username}</li>
+      <li style={{ textAlign:"center" }}>{user.email}</li>
+      <li style={{ textAlign:"center" }}>{user.address.street}</li>
+     </ul>
+  ))
 }
-
-export default App;
+  </>
+}
