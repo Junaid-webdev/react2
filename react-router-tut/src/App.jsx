@@ -1,51 +1,41 @@
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import "./App.css";
-function App(){
-
-  const [name,setName]=useState('');
-  const [nameErr,setNameErr]=useState();
+function App() {
 
 
-  const [Password,setPassword]=useState('');
-  const [passErr,setpassErr]=useState();
 
-  const handlerName = (event)=>{
-    console.log(event.target.value);
-    if(event.target.value.length>8){
-      setNameErr("Only 8 Characters Allowed");
-    }else{
-      setNameErr('');
-      
-    }
-  }
-
-  const handlepassword = (event)=>{
-    console.log(event.target.value);
+  const handleLogin = (prevData, formData) => {
+    let name = formData.get('name')
+    let password = formData.get('password')
     let regex = /^[A-Z0-9]+$/i;
-    if(regex.test(event.target.value)){
-       setpassErr();
-    }else{
-    
-       setpassErr("Only numbers and alphabets  allowed")
+
+    if (!name || name.length > 8) {
+      return { error: "Only 8 charcters ",name,password }
+    } else if (!regex.test(password)) {
+      return { error: "Only numbers and alphabetes",name,password }
     }
-    
+    return { message: "You are successfully login!" }
   }
 
-  return<>
-  <div>
+  const [data, formAction, pedding] = useActionState(handleLogin);
+  console.log(data);
 
-  <input type="text" className={nameErr?'error':''} onChange={handlerName} placeholder="Enter Name" />
-  <br />
-  <span className="red-color">{nameErr && nameErr}</span>
-  <br /><br />
-  <input type="text" className={passErr?'error':''}  placeholder="Enter Password" onChange={handlepassword} />
-  <br />
-    <span className='red-color'>{passErr && passErr }</span>
-  <br /><br />
-  <button disabled={passErr || nameErr}>Login</button>
+  return <>
+    <div>
 
-  </div>
-  
+      <h1>Validation with UseAction in React  </h1>
+      {data?.message && <h2 style={{ color: "green" }}>{data.message}</h2>}
+      {data?.error && <h2 style={{ color: "red" }}>{data.error}</h2>}
+      <form action={formAction}>
+        <input defaultValue={data?.name} type="text" name="name" placeholder="Enter Your Name" />
+        <br /><br />
+        <input defaultValue={data?.password} type="text" name="password" placeholder="Enter user Password" />
+        <br /><br />
+        <button type="submit">Login</button>
+          </form>
+
+    </div>
+
 
 
   </>
