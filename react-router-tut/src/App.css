@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+.error{
+  border: 1px solid red;
+}
+.error:focus{
+    outline: 1px solid red;
+
+}
+.red-color{
+  color: red;
+}
