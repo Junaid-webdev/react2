@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function UserApp() {
 
   const [userData, setUserData] = useState([]);
+  const navigate = useNavigate();
   const [loding, setLoding] = useState(false);
  const url = "http://localhost:3000/users";
   useEffect(() => {
@@ -28,6 +30,10 @@ export default function UserApp() {
       alert("Record Deleted")
       getUserData();
     }
+  }
+
+  const editUser = (id)=>{
+    navigate("/edit/"+id)
   }
 
   return (
@@ -76,6 +82,7 @@ export default function UserApp() {
                   </td>
                   <td style={{ border: "1px solid #ccc", padding: "8px" }}>
                  <button onClick={()=>deleteUser(user.id)}>Delete</button>
+                 <button onClick={()=>editUser(user.id)}>Edit</button>
                   </td>
                 </tr>
               ))}
